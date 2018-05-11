@@ -1,0 +1,134 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "messages": {
+        "$i18n": "locales.yml"
+    },
+    "title": {
+        "$ref": "#/messages/deploy.title"
+    },
+    "description": {
+        "$ref": "#/messages/deploy.description"
+    },
+    "longDescription": {
+        "$ref": "#/messages/deploy.longDescription"
+    },
+    "type": "object",
+    "properties": {
+        "blockchain-service-instance": {
+            "description": {
+                "$ref": "#/messages/deploy.blockchainDescription"
+            },
+            "type": "string"
+        },
+        "cloudant-service-instance": {
+            "description": {
+                "$ref": "#/messages/deploy.cloudantDescription"
+            },
+            "type": "string"
+        },
+        "prod-app-name": {
+            "description": {
+                "$ref": "#/messages/deploy.appDescription"
+            },
+            "type": "string",
+            "pattern": "\\S"
+        },
+        "prod-region": {
+            "description": {
+                "$ref": "#/messages/deploy.regionDescription"
+            },
+            "type": "string",
+            "pattern": "^(ibm:yp:us-south|ibm:ys1:us-south)$"
+        },
+        "prod-organization": {
+            "description": {
+                "$ref": "#/messages/deploy.organizationDescription"
+            },
+            "type": "string"
+        },
+        "prod-space": {
+            "description": {
+                "$ref": "#/messages/deploy.spaceDescription"
+            },
+            "type": "string"
+        }
+    },
+    "required": [
+        "blockchain-service-instance",
+        "cloudant-service-instance",
+        "prod-app-name",
+        "prod-region",
+        "prod-organization",
+        "prod-space"
+    ],
+    "form": [
+        {
+            "type": "validator",
+            "url": "/devops/setup/bm-helper/helper.html"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+                "$ref": "#/messages/deploy.blockchainServiceName"
+            },
+            "key": "blockchain-service-instance"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+                "$ref": "#/messages/deploy.cloudantServiceName"
+            },
+            "key": "cloudant-service-instance"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": {
+                "$ref": "#/messages/deploy.appName"
+            },
+            "key": "prod-app-name"
+        },
+        {
+            "type": "table",
+            "columnCount": 3,
+            "widths": ["33%", "33%", "33%"],
+            "items": [
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.regionName"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.organizationName"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/deploy.spaceName"
+                    }
+                },
+                {
+                    "type": "select",
+                    "key": "prod-region",
+                    "readonly": false
+                },
+                {
+                    "type": "select",
+                    "key": "prod-organization",
+                    "readonly": false
+                },
+                {
+                    "type": "select",
+                    "key": "prod-space",
+                    "readonly": false
+                }
+            ]
+        }
+    ]
+}
