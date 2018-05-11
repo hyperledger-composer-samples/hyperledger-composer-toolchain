@@ -16,13 +16,13 @@
     "properties": {
         "blockchain-service-instance": {
             "description": {
-                "$ref": "#/messages/deploy.blockchainDescription"
+                "$ref": "#/messages/deploy.blockchainServiceDescription"
             },
             "type": "string"
         },
         "cloudant-service-instance": {
             "description": {
-                "$ref": "#/messages/deploy.cloudantDescription"
+                "$ref": "#/messages/deploy.cloudantServiceDescription"
             },
             "type": "string"
         },
@@ -115,13 +115,11 @@
                 },
                 {
                     "type": "select",
-                    "key": "prod-region",
-                    "readonly": false
+                    "key": "prod-region"
                 },
                 {
                     "type": "select",
-                    "key": "prod-organization",
-                    "readonly": false
+                    "key": "prod-organization"
                 },
                 {
                     "type": "select",
