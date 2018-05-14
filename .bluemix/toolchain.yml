@@ -10,7 +10,7 @@ template:
   icon: icon.svg
   required:
     - sample-build
-    - sample-repo
+    - network-repo
   info:
     git url: >-
       [https://github.com/hyperledger-composer-samples/hyperledger-composer-toolchain](https://github.com/hyperledger-composer-samples/hyperledger-composer-toolchain)
@@ -22,20 +22,28 @@ toolchain:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
 services:
-  sample-repo:
+  network-repo:
     service_id: githubpublic
     parameters:
-      repo_name: '{{toolchain.name}}'
-      repo_url: 'https://github.com/hyperledger-composer-samples/empty-network'
+      repo_name: '{{form.githubpublic.parameters.network-repo_name}}'
+      repo_url: '{{form.githubpublic.parameters.network-repo_url}}'
       type: clone
       has_issues: true
+      enable_traceability: true
+  client-repo:
+    service_id: githubpublic
+    parameters:
+      repo_name: '{{form.githubpublic.parameters.client-repo_name}}'
+      repo_url: '{{form.githubpublic.parameters.client-repo_url}}'
+      type: clone
+      has_issues: false
       enable_traceability: true
   sample-build:
     service_id: pipeline
     parameters:
       services:
-        - sample-repo
-      name: '{{services.sample-repo.parameters.repo_name}}'
+        - network-repo
+      name: '{{services.network-repo.parameters.repo_name}}'
       ui-pipeline: true
       configuration:
         content:
@@ -52,10 +60,18 @@ services:
   webide:
     service_id: orion
 form:
+  githubpublic:
+    parameters:
+      network-repo_name: 'business-network-{{timestamp}}'
+      network-repo_url: 'https://github.com/hyperledger-composer-samples/todo-network'
+      client-repo_name: 'business-app-{{timestamp}}'
+      client-repo_url: 'https://github.com/hyperledger-composer-samples/todo-app'
+    schema:
+      $ref: github.json
   pipeline:
     parameters:
-      blockchain-service-instance: '{{toolchain.name}}'
-      cloudant-service-instance: '{{toolchain.name}}'
+      blockchain-service-instance: 'Blockchain-{{timestamp}}'
+      cloudant-service-instance: 'Composer Wallet-{{timestamp}}'
       prod-app-name: '{{toolchain.name}}'
       prod-region: '{{region}}'
       prod-organization: '{{organization}}'

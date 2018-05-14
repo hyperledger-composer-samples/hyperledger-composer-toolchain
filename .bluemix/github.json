@@ -1,0 +1,110 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "messages": {
+        "$i18n": "locales.yml"
+    },
+    "title": {
+        "$ref": "#/messages/github.title"
+    },
+    "description": {
+        "$ref": "#/messages/github.description"
+    },
+    "longDescription": {
+        "$ref": "#/messages/github.longDescription"
+    },
+    "type": "object",
+    "properties": {
+        "network-repo_name": {
+            "type": "string"
+        },
+        "network-repo_url": {
+            "type": "string"
+        },
+        "client-repo_name": {
+            "type": "string"
+        },
+        "client-repo_url": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "network-repo_name",
+        "network-repo_url",
+        "client-repo_name",
+        "client-repo_url"
+    ],
+    "form": [
+        {
+            "type": "validator",
+            "url": "/devops/setup/bm-helper/custom_github_helper.html"
+        },
+        {
+            "type": "table",
+            "columnCount": 4,
+            "widths": [
+                "18%",
+                "38%",
+                "6%",
+                "38%"
+            ],
+            "items": [
+                {
+                    "type": "label",
+                    "title": ""
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/github.sourceRepository"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": ""
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/github.targetRepository"
+                    }
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/github.networkRepository"
+                    }
+                },
+                {
+                    "type": "text",
+                    "key": "network-repo_url"
+                },
+                {
+                    "type": "icon",
+                    "iconType": "right_arrow"
+                },
+                {
+                    "type": "text",
+                    "key": "network-repo_name"
+                },
+                {
+                    "type": "label",
+                    "title": {
+                        "$ref": "#/messages/github.clientRepository"
+                    }
+                },
+                {
+                    "type": "text",
+                    "key": "client-repo_url"
+                },
+                {
+                    "type": "icon",
+                    "iconType": "right_arrow"
+                },
+                {
+                    "type": "text",
+                    "key": "client-repo_name"
+                }
+            ]
+        }
+    ]
+}
