@@ -17,7 +17,7 @@ template:
     git branch: >-
       [master](https://github.com/hyperledger-composer-samples/hyperledger-composer-toolchain/tree/master)
 toolchain:
-  name: 'hyperledger-composer-toolchain-{{timestamp}}'
+  name: '{{sampleName}}-toolchain-{{timestamp}}'
   template:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
@@ -62,17 +62,17 @@ services:
 form:
   githubpublic:
     parameters:
-      network-repo_name: 'business-network-{{timestamp}}'
-      network-repo_url: 'https://github.com/hyperledger-composer-samples/todo-network'
-      client-repo_name: 'business-app-{{timestamp}}'
-      client-repo_url: 'https://github.com/hyperledger-composer-samples/todo-app'
+      network-repo_name: '{{sampleName}}-network-{{timestamp}}'
+      network-repo_url: '{{networkRepo}}'
+      client-repo_name: '{{sampleName}}-app-{{timestamp}}'
+      client-repo_url: '{{clientRepo}}'
     schema:
       $ref: github.json
   pipeline:
     parameters:
       blockchain-service-instance: 'Blockchain-{{timestamp}}'
       cloudant-service-instance: 'Composer Wallet-{{timestamp}}'
-      prod-app-name: '{{toolchain.name}}'
+      prod-app-name: '{{services.client-repo.parameters.repo_name}}'
       prod-region: '{{region}}'
       prod-organization: '{{organization}}'
       prod-space: '{{space}}'
