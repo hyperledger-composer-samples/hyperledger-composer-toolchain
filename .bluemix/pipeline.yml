@@ -1,38 +1,24 @@
 ---
 stages:
-- name: BUILD
+- name: PREPARE
   inputs:
   - type: git
     branch: master
-    service: ${SAMPLE_REPO}
+    service: ${NETWORK_REPO}
   triggers:
   - type: commit
-  jobs:
-  - name: Build
-    type: builder
-- name: DEPLOY
-  inputs:
-  - type: job
-    stage: BUILD
-    job: Build
-  triggers:
-  - type: stage
   properties:
-  - name: CF_APP_NAME
-    value: undefined
+  - name: SCRIPT_DIR
+    value: ${SCRIPT_DIR}
     type: text
-  - name: APP_URL
-    value: undefined
+  - name: BUILD_SCRIPTS
+    value: ${BUILD_SCRIPTS}
     type: text
   jobs:
-  - name: Blue-Green Deploy
-    type: deployer
-    target:
-      region_id: ${PROD_REGION_ID}
-      organization: ${PROD_ORG_NAME}
-      space: ${PROD_SPACE_NAME}
-      application: ${CF_APP_NAME}
-    script: |
+  - name: Prepare
+    type: builder
+    artifact_dir: ''
+    build_type: shell
+    script: |-
       #!/bin/bash
-      env
-      
+      source <(curl -sSL "https://raw.githubusercontent.com/hyperledger-composer-samples/lib/master/scripts/pipeline-PREPARE.sh")
