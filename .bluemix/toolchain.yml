@@ -51,6 +51,7 @@ services:
           $text: pipeline.yml
         env:
           SCRIPT_DIR: './scripts/'
+          SCRIPT_URL: 'https://raw.githubusercontent.com/hyperledger-composer-samples/lib/master/scripts'
           BUILD_SCRIPTS: 'pipeline-COMMON.sh pipeline-DEPLOY.sh'
           NETWORK_REPO: network-repo
         execute: true

@@ -11,6 +11,9 @@ stages:
   - name: SCRIPT_DIR
     value: ${SCRIPT_DIR}
     type: text
+  - name: SCRIPT_URL
+    value: ${SCRIPT_URL}
+    type: text
   - name: BUILD_SCRIPTS
     value: ${BUILD_SCRIPTS}
     type: text
@@ -21,4 +24,4 @@ stages:
     build_type: shell
     script: |-
       #!/bin/bash
-      source <(curl -sSL "https://raw.githubusercontent.com/hyperledger-composer-samples/lib/master/scripts/pipeline-PREPARE.sh")
+      source <(curl -sSL "${SCRIPT_URL}/pipeline-PREPARE.sh")
