@@ -1,4 +1,7 @@
-# Use the "Hyperlegendary" toolchain
+---
+layout: page
+title: Use the "Hyperlegendary" toolchain
+---
 
 In this tutorial, you create an open toolchain from the "Hyperlegendary" template. The toolchain builds from GitHub repositories (repos), and deploys to IBM Cloud. After you create the toolchain, you explore your deployed blockchain and client app.
 
